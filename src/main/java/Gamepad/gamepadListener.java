@@ -4,4 +4,5 @@ public interface gamepadListener {
     void onAPressed();
     void onBPressed();
     void onXPressed();
+    void onYPressed();
 }

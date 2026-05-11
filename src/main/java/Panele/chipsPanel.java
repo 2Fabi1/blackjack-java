@@ -13,7 +13,7 @@ public class chipsPanel extends JPanel {
     public chipsPanel(int chips) {
         this.chips = chips;
 
-        setPreferredSize(new Dimension(100, 50));
+        setPreferredSize(new Dimension(150, 50));
         setLayout(new BorderLayout());
         setOpaque(true);
     }
@@ -46,12 +46,7 @@ public class chipsPanel extends JPanel {
     }
 
     private JButton ustawPrzycisk(JButton button, Color color, Color borderColor) {
-        button.setBackground(color);
-        button.setForeground(Color.WHITE);
-        button.setFocusPainted(false);
-        button.setFont(new Font("SansSerif", Font.BOLD, 18));
-        button.setPreferredSize(new Dimension((int)(width / 11), 50));
-        button.setBorder(BorderFactory.createLineBorder(borderColor, 5));
+        gamePanel.ustawPrzycisk(button, color, borderColor);
         return button;
     }
 }

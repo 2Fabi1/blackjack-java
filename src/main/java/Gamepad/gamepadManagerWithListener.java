@@ -12,6 +12,7 @@ public class gamepadManagerWithListener {
     private boolean prevA = false;
     private boolean prevB = false;
     private boolean prevX = false;
+    private boolean prevY = false;
 
     public gamepadManagerWithListener(gamepadListener listener) {
         this.listener = listener;
@@ -35,6 +36,9 @@ public class gamepadManagerWithListener {
 
                     if (state.x && !prevX) listener.onXPressed();
                     prevX = state.x;
+
+                    if (state.y && !prevY) listener.onYPressed();
+                    prevY = state.y;
                 }
 
                 try {
@@ -49,5 +53,9 @@ public class gamepadManagerWithListener {
     public void stop() {
         running = false;
         controllers.quitSDLGamepad();
+    }
+
+    public ControllerManager getControllers() {
+        return controllers;
     }
 }

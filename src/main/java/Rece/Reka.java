@@ -10,6 +10,7 @@ public class Reka {
 
     public void dobierz(karta k){
         karty.add(k);
+        policzWynik();
     }
 
     public int policzWynik(){
@@ -57,5 +58,10 @@ public class Reka {
 
     public String ukryte(){
         return karty.get(0).toString();
+    }
+
+    public List<karta> removeKarta(int idx) {
+        karty.remove(idx);
+        return karty;
     }
 }

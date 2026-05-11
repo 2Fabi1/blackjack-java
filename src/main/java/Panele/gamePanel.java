@@ -10,11 +10,16 @@ public class gamePanel extends JPanel {
     public JButton hitButton;
     public JButton standButton;
     public JButton doubleButton;
+    public JButton splitButton;
 
     public chipsPanel chPanel;
     public JPanel chipsContainer;
     public JButton plusButton;
     public potPanel pPanel;
+    public double deckX;
+    public double deckY;
+    public int deckW;
+    public int deckH;
 
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     int width = screenSize.width;
@@ -34,10 +39,12 @@ public class gamePanel extends JPanel {
         hitButton = new JButton("Hit (H)");
         standButton = new JButton("Stand (S)");
         doubleButton = new JButton("Double Down (D)");
+        splitButton = new JButton("Split (P)");
 
         ustawPrzycisk(hitButton, Color.RED, new Color(127, 0, 0));
         ustawPrzycisk(standButton, Color.CYAN, new Color(0, 127, 127));
         ustawPrzycisk(doubleButton, new Color(255, 215, 0), new Color(127, 110, 0));
+        ustawPrzycisk(splitButton, new Color(194, 65, 48), new Color(199, 83, 38));
 
         JPanel buttonsPanel = new JPanel();
         buttonsPanel.setLayout(new FlowLayout());
@@ -46,14 +53,18 @@ public class gamePanel extends JPanel {
         buttonsPanel.add(hitButton);
         buttonsPanel.add(standButton);
         buttonsPanel.add(doubleButton);
+        buttonsPanel.add(splitButton);
 
-        buttonsPanel.setBounds((int)(width / 3) + 21, (int)(0.6 * height), (int)(0.3 * width), 70);
+        buttonsPanel.setBounds((int)(width * 0.3), (int)(0.6 * height), (int)(0.4 * width), 70);
         tablePanel.add(buttonsPanel);
 
         // DECK
-        double deckY = (double) (height * 7) / 16;
+        deckX = width * 0.9;
+        deckY = (double) (height * 7) / 16;
+        deckW = width / 24;
+        deckH = height / 8;
         rewersPanel deck = new rewersPanel();
-        deck.setBounds((int)(width * 0.9), (int)(deckY), width / 24, height / 8);
+        deck.setBounds((int)(deckX), (int)(deckY), deckW, deckH);
         tablePanel.add(deck);
 
         // CHIPS + POT
@@ -73,19 +84,19 @@ public class gamePanel extends JPanel {
         chipsContainer.add(Box.createHorizontalStrut(25));
         chipsContainer.add(plusButton);
 
-        chipsContainer.setBounds(50, (int)(0.5 * height - (double) height / 8), width / 8, height / 16);
+        chipsContainer.setBounds(50, (int)(0.5 * height - (double) height / 8), width / 6, height / 16);
         tablePanel.add(chipsContainer);
 
         pPanel.setBounds(50, (int)(0.5 * height), width / 8, height / 16);
         tablePanel.add(pPanel);
     }
 
-    private void ustawPrzycisk(JButton button, Color color, Color borderColor) {
+    static void ustawPrzycisk(JButton button, Color color, Color borderColor) {
         button.setBackground(color);
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
         button.setFont(new Font("SansSerif", Font.BOLD, 18));
-        button.setPreferredSize(new Dimension((int)(width / 11), 50));
+        button.setPreferredSize(new Dimension((int)(Toolkit.getDefaultToolkit().getScreenSize().width / 11), 50));
         button.setBorder(BorderFactory.createLineBorder(borderColor, 5));
     }
 
